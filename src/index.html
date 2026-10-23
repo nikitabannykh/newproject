@@ -1,0 +1,158 @@
+<title>Поиск поставщиков</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css">
+
+
+<div class="app">
+  <header class="hdr">
+    <div style="display:flex;align-items:center;gap:10px">
+      <button class="burger" id="burger" aria-label="Меню"><svg class="i" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <div class="brand"><div class="brand-mark"><svg class="i" viewBox="0 0 24 24"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 12l9 4 9-4M3 17l9 4 9-4"/></svg></div><span>Ресторан<small>модуль закупок</small></span></div>
+    </div>
+    <div class="kpi-wrap">
+      <div class="kpi" id="kpi">
+        <div><span class="lbl">Поставщиков в работе</span><span class="val num" id="kWork">0</span></div>
+        <div><span class="lbl">Ждём КП</span><span class="val num" id="kWait">0</span></div>
+        <div><span class="lbl">КП получено</span><span class="val num" id="kOffer">0</span></div>
+        <div><span class="lbl">Постоянных поставщиков</span><span class="val num" id="kMine">0</span></div>
+        <div><span class="dot off" id="srcDot"></span><span class="src" id="srcLbl">Демо-каталог</span></div>
+      </div>
+    </div>
+    <div class="user"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><div>Имя Фамилия<small>закупщик</small></div></div>
+  </header>
+
+  <nav class="side" id="side" aria-label="Разделы системы">
+    <div class="ip">Закупки</div>
+    <a href="#search"><svg class="i" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9H3z"/></svg>Главная</a>
+    <a href="#search"><svg class="i" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 10h16"/></svg>Справочники</a>
+    <a href="#search"><svg class="i" viewBox="0 0 24 24"><path d="M5 4h14v16l-3-2-2 2-2-2-2 2-2-2-3 2z"/></svg>Учёт расходов</a>
+    <a href="#search"><svg class="i" viewBox="0 0 24 24"><path d="M3 7h18v12H3z"/><path d="M7 7V4h10v3"/></svg>Учёт товаров</a>
+    <a href="#search"><svg class="i" viewBox="0 0 24 24"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/></svg>Закупочные цены</a>
+    <a href="#search" class="on"><svg class="i" viewBox="0 0 24 24"><path d="M3 17h2l2-9h10l2 9h2"/><circle cx="8" cy="19" r="1.5"/><circle cx="17" cy="19" r="1.5"/><path d="M9 8V5h6v3"/></svg>Поставщики</a>
+    <a href="#search" class="sub" data-sub="search">Поиск</a>
+    <a href="#compare" class="sub" data-sub="compare">Сравнение</a>
+    <a href="#shortlist" class="sub" data-sub="shortlist">Избранное</a>
+    <a href="#mine" class="sub" data-sub="mine">Мои поставщики</a>
+    <a href="#search"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M8 12h8"/></svg>Стоп-лист</a>
+    <a href="#search"><svg class="i" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg>Товарооборот</a>
+    <a href="#search"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg>Настройки</a>
+  </nav>
+
+  <main class="content">
+    <div class="crumbs"><svg class="i" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9H3z"/></svg><a href="#search">Главная</a>›<a href="#search">Закупки</a>›<a href="#search">Поставщики</a>›<span id="crumbLast">Поиск</span></div>
+    <div class="title-row">
+      <h1 id="pageTitle">Поиск поставщиков</h1>
+    </div>
+
+    <div class="toolbar" hidden>
+      <span class="hint">Источник данных</span>
+      <span class="stamp" id="stamp">Последнее обновление: —</span>
+      <div class="seg" role="group" aria-label="Источник данных">
+        <button type="button" data-src="live" id="srcLive"><span class="dot off" id="segDot"></span>2ГИС</button>
+        <button type="button" data-src="demo">Демо-каталог</button>
+      </div>
+    </div>
+
+    <nav class="tabs" aria-label="Поставщики">
+      <a href="#search" data-view="search">Поиск</a>
+      <a href="#compare" data-view="compare">Сравнение <span class="cnt" id="cCount">0</span></a>
+      <a href="#shortlist" data-view="shortlist">Избранное <span class="cnt" id="sCount">0</span></a>
+      <a href="#mine" data-view="mine">Мои поставщики <span class="cnt" id="mCount">0</span></a>
+    </nav>
+
+    <div class="panel">
+      <!-- SEARCH -->
+      <section class="view" id="v-search">
+        <div class="panel-body">
+          <div class="hero">
+          <div class="hero-t"><h2>Какой товар ищем?</h2><p>Напишите позицию — найдём поставщиков в выбранном городе, оценим их и поможем запросить КП.</p></div>
+          <form class="ask" id="askForm">
+            <div class="q-wrap"><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="q" type="text" autocomplete="off" aria-label="Что ищем" placeholder="Например: мука высшего сорта" autofocus><button type="button" id="qClear" class="q-clear" aria-label="Стереть запрос" title="Стереть запрос">×</button></div>
+            <div class="cityx ddx" id="cityBox" data-ddk="city"><button type="button" class="city-btn dd-btn" data-ddk="city" id="cityBtn" aria-haspopup="listbox" aria-expanded="false" aria-controls="cityPop"><svg class="i" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span class="cl"><small>Город</small><b id="cityVal">Москва и МО</b></span><svg class="i chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button><ul class="city-pop" id="cityPop" role="listbox" aria-label="Город" hidden></ul><select id="fRegion" hidden aria-hidden="true" tabindex="-1"></select></div>
+            <button class="btn primary" type="submit"><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>Найти</button>
+          </form>
+          <div class="parsed" id="parsed"></div>
+          <div class="examples">
+            <button type="button" data-ex="Мука высшего сорта">Мука высшего сорта</button>
+            <button type="button" data-ex="Моцарелла для пиццы">Моцарелла</button>
+            <button type="button" data-ex="Куриное филе">Куриное филе</button>
+            <button type="button" data-ex="Подсолнечное масло">Подсолнечное масло</button>
+            <button type="button" data-ex="Бумажные стаканы">Бумажные стаканы</button>
+            <button type="button" data-ex="Специи">Специи</button>
+          </div>
+          </div>
+          <div id="guide"></div>
+          <div id="srcNote" hidden></div>
+          <div class="work" id="work" hidden>
+            <div class="filters" id="filters" hidden><div class="fhead"><b>Фильтры</b><button type="button" class="gx" id="fClose" aria-label="Скрыть фильтры">×</button></div>
+              <div class="fg" id="liveOnly"><div class="fh">Поставщик</div>
+                <label class="check"><input type="checkbox" id="fNoRetail"> Без розничных магазинов</label>
+                <label class="check"><input type="checkbox" id="fCashless"> Безналичный расчёт</label>
+                <label class="check"><input type="checkbox" id="fReviews"> Есть отзывы в 2ГИС</label>
+                <label class="check"><input type="checkbox" id="fWeekend"> Работает в выходные</label>
+                <div class="fh" style="margin-top:6px">Рейтинг в 2ГИС</div>
+                <div class="seg3" id="fRating"><button type="button" data-r="">Любой</button><button type="button" data-r="4">4+</button><button type="button" data-r="4.5">4,5+</button></div></div>
+
+              <div class="fg" hidden><div class="fh">Категория</div><div id="fCats" style="display:grid;gap:5px"></div></div>
+              <div class="fg">
+                <label class="check" id="onlyRegionWrap"><input type="checkbox" id="fOnlyRegion"> Только кто возит в мой город</label></div>
+              <div class="fg"><label class="fh" for="fVol">Объём в месяц</label>
+                <div class="vol"><input id="fVol" type="number" min="0" step="10" placeholder="—"><select id="fUnit" aria-label="Единица"><option>кг</option><option>шт</option></select></div>
+                <div class="hint">Сравним с минимальным заказом и подставим в запрос КП</div></div>
+              <details class="fg fdet"><summary class="fh">Нужные документы</summary><div id="fDocs" style="display:grid;gap:5px;margin-top:6px"></div></details>
+              <div class="fg"><div class="fh">Тип поставщика</div><div id="fTypes" style="display:grid;gap:5px"></div></div>
+              <div class="fg" id="demoOnly"><div class="fh">Данные</div>
+                <label class="check"><input type="checkbox" id="fVerified"> Подтверждено поставщиком</label>
+                <label class="check"><input type="checkbox" id="fPrice"> Цена указана</label>
+                <div class="fh" style="margin-top:6px">Что важнее</div>
+                <div class="seg3" id="fPreset"><button type="button" data-p="balance">Баланс</button><button type="button" data-p="price">Цена</button><button type="button" data-p="trust">Надёжность</button></div></div>
+              <div class="f-foot"><button type="button" class="btn sm" id="fReset">Сбросить фильтры</button><button type="button" class="btn primary only-m" id="fApply">Показать результаты</button></div>
+            </div>
+            <div style="min-width:0">
+              <div class="res-head"><h2 id="resTitle">Поставщики</h2>
+                <div class="res-tools"><button type="button" class="btn" id="toggleFilters" aria-pressed="false"><svg class="i" viewBox="0 0 24 24"><path d="M4 5h16l-6 8v5l-4 2v-7z"/></svg>Фильтры<span class="cnt" id="fCount" hidden>0</span></button>
+                <span class="hidbox" id="hidBox"></span><div class="cityx ddx sortx" id="sortBox" data-ddk="sort"><button type="button" class="city-btn dd-btn" data-ddk="sort" id="sortBtn" aria-haspopup="listbox" aria-expanded="false"><svg class="i" viewBox="0 0 24 24"><path d="M7 4v16M7 20l-3-3M7 20l3-3M17 20V4M17 4l-3 3M17 4l3 3"/></svg><span class="cl"><small>Сортировка</small><b id="sortVal">По совпадению</b></span><svg class="i chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button><ul class="city-pop" id="sortPop" role="listbox" aria-label="Сортировка" hidden></ul><select id="sort" hidden aria-hidden="true" tabindex="-1"></select></div></div></div>
+              <div class="grid-head" id="gridHead"></div>
+              <div id="list"></div>
+              <div class="more" id="more"></div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-foot" id="cmpFoot" hidden>
+          <span class="foot-lbl" id="footLbl">Выбрано для сравнения: 0</span>
+          <div style="display:flex;gap:8px"><button class="btn" id="cmpClear" hidden>Очистить</button><a class="btn primary" id="cmpGo" href="#compare">Сравнить</a></div>
+        </div>
+      </section>
+
+      <!-- COMPARE -->
+      <section class="view" id="v-compare" hidden><div class="panel-body" id="cmp"></div></section>
+
+      <!-- SHORTLIST -->
+      <section class="view" id="v-shortlist" hidden>
+        <div class="panel-body">
+          <p class="hint" style="margin:0">Перетаскивайте карточки между колонками. Получили КП и договорились — переносите в «Постоянный» или «Резервный», поставщик появится во вкладке «Мои поставщики».</p>
+          <div class="summary" id="sumBox"></div>
+          <div class="board-wrap"><div class="board" id="board"></div></div>
+        </div>
+      </section>
+
+      <!-- MINE -->
+      <section class="view" id="v-mine" hidden>
+        <div class="panel-body">
+          <p class="hint" style="margin:0">Поставщики, которых вы выбрали: постоянные и резервные, по категориям закупки. Категория без постоянного поставщика подсвечена.</p>
+          <div class="summary" id="mineSum"></div>
+          <div class="mine" id="mineList"></div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<div class="backdrop" id="backdrop" hidden></div>
+<aside class="drawer" id="drawer" hidden role="dialog" aria-modal="true"></aside>
+<div class="toast" id="toast" hidden></div>
+<script src="app.js"></script>
