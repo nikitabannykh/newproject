@@ -1,7 +1,10 @@
-.vercel
-.netlify
-node_modules
+node_modules/
 public/
 yc/dist/
+.vercel/
+.env
+.env.*
+!.env.example
 *.png
-.env*
+!docs/**/*.png
+.DS_Store

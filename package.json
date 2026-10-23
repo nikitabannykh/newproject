@@ -1,1 +1,17 @@
-{ "name": "snabzheno-suppliers", "private": true, "type": "module", "engines": { "node": ">=18" } }
+{
+  "name": "supplier-search",
+  "version": "0.3.0",
+  "description": "Поиск и сравнение поставщиков продуктов и упаковки для ресторанов: 2ГИС + краулер сайтов",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "build": "node build.mjs",
+    "dev": "node build.mjs && node server.mjs",
+    "test": "node --test test/*.test.mjs",
+    "check": "for f in lib/*.mjs api/*.mjs yc/*.mjs server.mjs build.mjs src/app.js; do node --check \"$f\" || exit 1; done",
+    "ci": "npm run check && npm test && npm run build",
+    "build:yc": "npx -y esbuild@0.24.0 yc/index.mjs --bundle --platform=node --target=node18 --format=cjs --outfile=yc/dist/index.js",
+    "deploy": "npx -y vercel@48.1.0 deploy --prod"
+  }
+}
