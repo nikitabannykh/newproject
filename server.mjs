@@ -20,7 +20,10 @@ http.createServer(async (req, res) => {
     res.writeHead(200, { 'content-type': 'application/json; charset=utf-8' }); res.end(JSON.stringify(body)); return;
   }
   if (url.pathname.startsWith('/api/')) {
-    const r = url.pathname === '/api/egrul' ? await handleEgrul(new Request(url)) : await handle(new Request(url), process.env.TWOGIS_KEY);
+    const hdrs = Object.fromEntries(Object.entries(req.headers).filter(([, v]) => typeof v === 'string'));
+    hdrs['x-real-ip'] = req.socket.remoteAddress || 'local';
+    const rq = new Request(url, { headers: hdrs });
+    const r = url.pathname === '/api/egrul' ? await handleEgrul(rq) : await handle(rq, process.env.TWOGIS_KEY);
     res.writeHead(r.status, Object.fromEntries(r.headers));
     res.end(await r.text());
     return;

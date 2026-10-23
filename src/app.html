@@ -431,6 +431,101 @@ textarea{width:100%;min-height:80px;border:1px solid var(--line);border-radius:4
 .fhead b{font-size:14px;font-weight:500}
 .fhead .gx{border:0;background:transparent;color:var(--muted);font-size:18px;width:26px;height:26px;border-radius:4px}
 .fhead .gx:hover{background:var(--line)}
+.only-m{display:none}
+.cmp-cell{display:flex;align-items:center;gap:6px;cursor:pointer}
+.more-r{display:none}
+.f-foot{display:flex;gap:8px;flex-wrap:wrap}
+@media (max-width:600px){
+  .only-m{display:revert}
+  .hide-m{display:none!important}
+  /* шапка: без полосы показателей */
+  .kpi-wrap{display:none}
+  .hdr{grid-template-columns:auto 1fr}
+  .crumbs{display:none}
+  h1{font-size:22px}
+  .title-row{margin:4px 0 8px}
+  /* вкладки в одну строку с прокруткой */
+  .tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;margin-inline:-12px;padding-inline:12px}
+  .tabs::-webkit-scrollbar{display:none}
+  .tabs a{white-space:nowrap;padding:12px 14px;flex:none}
+  .panel{border-radius:6px}
+  /* поиск */
+  .hero{padding:14px;gap:10px}
+  .hero-t h2{font-size:19px}.hero-t p{font-size:13px}
+  .hero .ask .q-wrap input{font-size:17px;padding-block:15px}
+  .hero .ask .btn.primary{min-height:52px;font-size:17px;width:100%}
+  .city-btn{min-height:52px}
+  .examples{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+  .examples::-webkit-scrollbar{display:none}
+  .examples button{flex:none;min-height:38px;padding:6px 14px}
+  .gstrip{flex-wrap:nowrap;overflow-x:auto}
+  .gstrip .gs:not(.cur){display:none}.gstrip .sep{display:none}
+  .res-head{flex-direction:column;align-items:stretch}
+  .res-tools{display:grid;grid-template-columns:auto 1fr;gap:8px}
+  .res-tools #hidBox{grid-column:1/-1}
+  #toggleFilters{min-height:44px}
+  .sortx .city-btn{min-width:0;min-height:44px}
+  /* строка компании */
+  .row{padding:14px 8px;gap:8px}
+  .row{grid-template-columns:minmax(0,1fr)!important}
+  .row.row > *{grid-column:1/-1}
+  .row .why li:nth-child(n+4):not(.more-r){display:none}
+  .more-r{display:list-item;background:var(--panel-2);color:var(--muted)}
+  .row .cell{display:inline-block}
+  .acts{grid-template-columns:1fr 48px 48px!important;gap:8px;margin-top:4px}
+  .acts .btn{min-height:46px;font-size:15px}
+  .acts .btn .lbl{display:none}
+  .acts .btn[data-write] .lbl,.acts .btn[data-unhide] .lbl{display:inline}
+  .acts .btn:not([data-write]){padding:0}
+  .acts .btn svg.i{width:20px;height:20px}
+  .acts .btn.on{color:#C88A00;background:#FFF6DA;border-color:#F0D58A}
+  .acts .btn.on .ico-m svg{fill:#F2B705;stroke:#C88A00}
+  .cmp-cell{min-height:36px;font-size:13px;color:var(--muted)}
+  .cmp-cell input{width:22px!important;height:22px!important;margin:0!important}
+  .row.row > .cmp-cell{grid-column:1/-1;order:9}
+  .thumb{width:64px;height:64px}
+  /* нижняя панель сравнения */
+  .panel-foot{padding:10px 12px;padding-bottom:max(10px,env(safe-area-inset-bottom,0px))}
+  .foot-lbl{font-size:14px}
+  #cmpGo{min-height:44px}
+  /* фильтры — полноэкранная панель */
+  .filters:not([hidden]){position:fixed;inset:0;z-index:70;border-radius:0;overflow-y:auto;padding:16px max(16px,env(safe-area-inset-right,0px)) calc(90px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:var(--panel)}
+  .filters .fhead{position:sticky;top:-16px;background:var(--panel);padding:12px 0;z-index:1}
+  .filters .fhead b{font-size:18px}
+  .filters .fhead .gx{width:44px;height:44px;font-size:24px}
+  .filters .check{min-height:40px;font-size:15px}
+  .filters .check input{width:22px;height:22px}
+  .filters .seg3 button{min-height:44px}
+  .f-foot{position:fixed;left:0;right:0;bottom:0;background:var(--panel);border-top:1px solid var(--line);padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));display:grid;grid-template-columns:auto 1fr;z-index:2}
+  .f-foot .btn{min-height:48px;font-size:15px}
+  body.sheet-open{overflow:hidden}
+  /* карточка компании: панель действий внизу экрана */
+  .drawer{display:flex;flex-direction:column}
+  .dh{grid-template-columns:72px minmax(0,1fr) auto;padding:12px 14px;gap:10px}
+  .dh h2{font-size:16px}
+  .dh .tile .t-v{font-size:18px}
+  .x{width:44px;height:44px;font-size:22px}
+  .da{order:9;position:sticky;bottom:0;z-index:3;border-top:1px solid var(--line);border-bottom:0;padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));display:grid;grid-template-columns:1fr auto;gap:8px;box-shadow:0 -6px 18px rgba(0,0,0,.08)}
+  .da select{min-height:44px;font-size:15px}
+  .da .check{min-height:44px;font-size:15px}
+  .da .btn.primary{grid-column:1/-1;margin:0!important;min-height:50px;font-size:16px}
+  .db{padding:12px 12px 20px}
+  .sec{padding:12px}
+  .kv{grid-template-columns:1fr}
+  .items{grid-template-columns:repeat(2,1fr)}
+  .compose textarea{min-height:200px;font-size:16px}
+  .fld input{min-height:44px;font-size:16px}
+  .chan button,.tpls button{min-height:40px}
+  .send-row .btn{min-height:48px;flex:1}
+  /* избранное: колонки листаются вбок */
+  .board-wrap{margin-inline:-12px;padding-inline:12px;scroll-snap-type:x mandatory}
+  .board{grid-template-columns:repeat(7,82vw);min-width:0}
+  .col{scroll-snap-align:start}
+  .kc select{min-height:40px;font-size:14px}
+  .kc .btn{min-height:40px}
+  .mrow .acts2 .btn,.mrow .acts2 select{min-height:44px}
+  .toast{bottom:calc(84px + env(safe-area-inset-bottom,0px));max-width:calc(100% - 32px)}
+}
 .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(84px + env(safe-area-inset-bottom,0px));background:var(--side);color:#fff;padding:9px 16px;border-radius:5px;z-index:80;font-size:13.5px}
 
 /* ---------- responsive ---------- */
@@ -566,7 +661,7 @@ textarea{width:100%;min-height:80px;border:1px solid var(--line);border-radius:4
                 <label class="check"><input type="checkbox" id="fPrice"> Цена указана</label>
                 <div class="fh" style="margin-top:6px">Что важнее</div>
                 <div class="seg3" id="fPreset"><button type="button" data-p="balance">Баланс</button><button type="button" data-p="price">Цена</button><button type="button" data-p="trust">Надёжность</button></div></div>
-              <button type="button" class="btn sm" id="fReset">Сбросить фильтры</button>
+              <div class="f-foot"><button type="button" class="btn sm" id="fReset">Сбросить фильтры</button><button type="button" class="btn primary only-m" id="fApply">Показать результаты</button></div>
             </div>
             <div style="min-width:0">
               <div class="res-head"><h2 id="resTitle">Поставщики</h2>
@@ -1134,16 +1229,16 @@ function renderList(){
     const sub=live?esc(s.fullAddress)+(s.addressComment?' · '+esc(s.addressComment):'')+(s.groupN>1?` · <b>ещё ${s.groupN-1} ${plural(s.groupN-1,'филиал','филиала','филиалов')} в выдаче</b>`:''):`${s.city} · ${esc(s.products.join(', '))}`;
     const seen=work.viewed[s.id];
     return `<div class="row ${work.hidden[s.id]?'is-hidden':''} ${seen?'seen':''}" data-row="${s.id}">
-      <input type="checkbox" data-cmp="${s.id}" ${work.compare.includes(s.id)?'checked':''} aria-label="Сравнить ${esc(s.name)}">
+      <label class="cmp-cell" title="Сравнить"><input type="checkbox" data-cmp="${s.id}" ${work.compare.includes(s.id)?'checked':''} aria-label="Сравнить ${esc(s.name)}"><span class="only-m">Сравнить</span></label>
       ${tile(sc.total)}
       <div style="min-width:0">${img?`<img class="thumb" src="${esc(safeUrl(img.src))}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">`:''}<button class="nm" data-open="${s.id}">${esc(s.name)}</button>${seen?`<span class="seen-b" title="Вы открывали карточку"><svg class="i" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>Просмотрено ${seenAgo(seen)}</span>`:''}<div class="meta">${sub}</div>
         ${live?`<div class="meta">${esc(s.products.slice(0,4).join(' · '))}</div>`:''}
         <div class="tags">${tags}</div>
-        <ul class="why">${sc.reasons.map(([c,t])=>`<li class="${c}">${esc(t)}</li>`).join('')}</ul></div>
+        <ul class="why">${sc.reasons.map(([c,t])=>`<li class="${c}">${esc(t)}</li>`).join('')}${sc.reasons.length>3?`<li class="more-r">+${sc.reasons.length-3} в карточке</li>`:''}</ul></div>
       <div class="cell"><span class="cell-l">Мин. заказ</span>${moqC}</div>
       <div class="cell"><span class="cell-l">Цена</span>${priceC}</div>
       <div class="cell"><span class="cell-l">${live?'Рейтинг и график':'Доставка'}</span>${live?c5live:esc(s.d[2])}</div>
-      <div class="acts"><button class="btn sm primary" data-write="${s.id}"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Написать</button><button class="btn sm ${stt?'on':''}" data-shortlist="${s.id}" title="${stt?'Убрать из избранного':'Добавить в избранное'}">${stt?'✓ '+STATUSES[stt]:'<svg class="i" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>В избранное'}</button><button class="btn sm" data-open="${s.id}"><svg class="i" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>Карточка</button>${work.hidden[s.id]?`<button class="btn sm" data-unhide="${s.id}">Вернуть в выдачу</button>`:`<button class="btn sm" data-hide="${s.id}" title="Скрыть из выдачи"><svg class="i" viewBox="0 0 24 24"><path d="M3 3l18 18"/><path d="M10.6 6.1A9.9 9.9 0 0 1 12 6c5 0 9 6 9 6a17 17 0 0 1-2.8 3.3M6.6 6.6C4.3 8.1 3 12 3 12s4 6 9 6c1.4 0 2.7-.4 3.9-1"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg>Скрыть</button>`}</div>
+      <div class="acts"><button class="btn sm primary" data-write="${s.id}"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Написать</button><button class="btn sm ${stt?'on':''}" data-shortlist="${s.id}" title="${stt?'Убрать из избранного':'Добавить в избранное'}" aria-label="${stt?'В избранном: '+STATUSES[stt]:'В избранное'}">${stt?'<span class="ico-m">'+'<svg class=\"i\" viewBox=\"0 0 24 24\"><path d=\"M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z\"/></svg>'+'</span><span class="lbl">✓ '+STATUSES[stt]+'</span>':'<svg class="i" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg><span class="lbl">В избранное</span>'}</button><button class="btn sm hide-m" data-open="${s.id}"><svg class="i" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>Карточка</button>${work.hidden[s.id]?`<button class="btn sm" data-unhide="${s.id}">Вернуть в выдачу</button>`:`<button class="btn sm" data-hide="${s.id}" title="Скрыть из выдачи" aria-label="Скрыть из выдачи"><svg class="i" viewBox="0 0 24 24"><path d="M3 3l18 18"/><path d="M10.6 6.1A9.9 9.9 0 0 1 12 6c5 0 9 6 9 6a17 17 0 0 1-2.8 3.3M6.6 6.6C4.3 8.1 3 12 3 12s4 6 9 6c1.4 0 2.7-.4 3.9-1"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg><span class="lbl">Скрыть</span></button>`}</div>
     </div>`}).join('');
   more.innerHTML=live&&L.hasMore?`<button class="btn soft" id="loadMore" ${L.loading?'disabled':''}>${L.loading?'Загружаем…':'Загрузить ещё из 2ГИС'}</button>`:(live&&L.error?`<div class="notice err">${esc(L.error)}</div>`:'');
 }
@@ -1471,7 +1566,7 @@ document.getElementById('askForm').addEventListener('submit',e=>{
   if(!p.cat&&!p.region&&!p.vol&&st.source!=='live')toast('Не нашёл категорию или город, уточните фильтрами');
 });
 document.addEventListener('click',e=>{
-  const t=e.target.closest('#fClose,#fRating button,[data-guide],[data-enrich],[data-move],[data-findcat],[data-exp],[data-ask],[data-offerform],[data-offercancel],[data-offerdel],[data-egrfind],[data-egrpick],[data-hide],[data-unhide],[data-showhidden],[data-unhideall],#qClear,[data-clearall],[data-write],[data-ch],[data-tpl],#sendBtn,[data-ex],[data-unchip],[data-open],[data-shortlist],[data-close],[data-copy],[data-copyrfq],[data-sent],[data-cmp-rm],[data-jump],[data-src],[data-p],#fReset,#backdrop,#loadMore,#toggleFilters,#refresh,#cmpClear,#burger,.side a');
+  const t=e.target.closest('#fApply,#fClose,#fRating button,[data-guide],[data-enrich],[data-move],[data-findcat],[data-exp],[data-ask],[data-offerform],[data-offercancel],[data-offerdel],[data-egrfind],[data-egrpick],[data-hide],[data-unhide],[data-showhidden],[data-unhideall],#qClear,[data-clearall],[data-write],[data-ch],[data-tpl],#sendBtn,[data-ex],[data-unchip],[data-open],[data-shortlist],[data-close],[data-copy],[data-copyrfq],[data-sent],[data-cmp-rm],[data-jump],[data-src],[data-p],#fReset,#backdrop,#loadMore,#toggleFilters,#refresh,#cmpClear,#burger,.side a');
   if(!t)return;
   if(t.dataset.guide){const a=t.dataset.guide,first=()=>document.querySelector('#list .row');
     if(a==='g-ex'){document.getElementById('q').value='Мука высшего сорта';document.getElementById('askForm').requestSubmit()}
@@ -1504,7 +1599,7 @@ document.addEventListener('click',e=>{
   if(t.matches('.side a')){document.getElementById('side').classList.remove('open');return}
   if(t.id==='burger'){document.getElementById('side').classList.toggle('open');return}
   if(t.id==='backdrop'||t.dataset.close!==undefined){closeDrawer();return}
-  if(t.id==='toggleFilters'){showFilters=!showFilters;renderFilters();return}
+  if(t.id==='toggleFilters'){showFilters=!showFilters;renderFilters();document.body.classList.toggle('sheet-open',showFilters&&innerWidth<=600);return}
   if(t.id==='qClear'||t.dataset.clearall!==undefined){clearQuery();return}
   if(t.id==='loadMore'){runLive(false);return}
   if(t.id==='cmpClear'){work.compare=[];save();renderList();renderCounts();return}
@@ -1520,7 +1615,7 @@ document.addEventListener('click',e=>{
   if(t.dataset.jump){document.getElementById(t.dataset.jump).scrollIntoView({behavior:'smooth',block:'start'});return}
   if(t.dataset.p){st.preset=t.dataset.p;renderFilters();refresh();return}
   if(t.id==='fReset'){Object.assign(st,{vol:0,docs:[],types:[],onlyRegion:false,verified:false,priceKnown:false,minRating:0,noRetail:false,cashless:false,withReviews:false,weekend:false});renderFilters();refresh();return}
-  if(t.id==='fClose'){showFilters=false;renderFilters();return}
+  if(t.id==='fClose'||t.id==='fApply'){showFilters=false;renderFilters();document.body.classList.remove('sheet-open');if(t.id==='fApply')document.getElementById('resTitle').scrollIntoView({block:'start'});return}
   if(t.dataset.r!==undefined&&t.closest('#fRating')){st.minRating=+t.dataset.r||0;renderFilters();renderList();renderCounts();return}
 });
 document.addEventListener('click',e=>{
